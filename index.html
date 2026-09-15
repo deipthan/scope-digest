@@ -422,6 +422,13 @@ footer .disc{max-width:560px;font-size:12px;line-height:1.6}
 footer .disc a{color:var(--on-void);text-decoration:none;border-bottom:1px solid rgba(23,179,172,.5)}
 footer .disc a:hover{border-bottom-color:var(--nbi)}
 
+/* ——— page-to-page transitions (browsers without view transitions simply navigate) ——— */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .2s ease-in both}
+::view-transition-new(root){animation:vt-in .34s ease-out both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;transform:translateY(6px)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 .reveal{opacity:0;transform:translateY(28px)}
 html.no-motion .reveal{opacity:1;transform:none}
 
@@ -967,6 +974,18 @@ if(canHover && !reduce){
     requestAnimationFrame(spTick);
   })();
 }
+
+/* prefetch the page under the pointer so the next click is instant */
+(function(){
+  var seen = {};
+  document.addEventListener("pointerover", function(e){
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null; if(!a) return;
+    var href = a.getAttribute("href") || "";
+    if(!/^[\w-]+\.html(#.*)?$/.test(href)) return;
+    var file = href.split("#")[0]; if(seen[file]) return; seen[file] = 1;
+    var l = document.createElement("link"); l.rel = "prefetch"; l.href = file; l.as = "document"; document.head.appendChild(l);
+  }, {passive:true});
+})();
 
 /* magnetic CTA */
 if(!reduce && !mobile){
