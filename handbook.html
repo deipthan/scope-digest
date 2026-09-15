@@ -141,7 +141,7 @@ html[data-theme="black"]{
   --on-accent:#0B1311;
 }
 /* figures and photos are always light plates, whatever the theme */
-.fig svg,.imgslot figure{
+.fig svg{
   --paper:#F6F8F6;--card:#FFFFFF;--core:#E9F1EF;--ink:#1B2422;--ink-2:#59665F;--ink-3:#8A958F;
   --rule:#D7DFDA;--rule-soft:#E6ECE9;--sage:#0E6E6B;--sage-deep:#0A4A48;--sage-wash:#E3EFED;
   --gold:#8A6D2F;--clay:#A93B4A;--wash:#F9FBFA}
@@ -354,17 +354,8 @@ a{color:var(--sage-deep)}
   border:1px solid var(--rule);width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:16px}
 .top:hover{background:var(--sage-wash);color:var(--sage-deep)}
 
-.imgslot:not(.filled){display:none}
-body.addimg .imgslot{display:block}
 .btn.on{background:var(--sage);border-color:var(--sage);color:var(--on-accent)}
-.imgslot.hidden{display:none}
-body.addimg .imgslot.hidden{display:block}
 .btn.on{background:var(--sage);border-color:var(--sage);color:var(--on-accent)}
-.imgslot.over .empty{border-color:var(--sage);background:var(--sage-wash)}
-.slotbtn{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:9.5px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--sage-deep);background:var(--card);
-  border:1px solid var(--rule);border-radius:20px;padding:7px 15px;cursor:pointer}
-.slotbtn:hover{background:var(--sage-wash);border-color:var(--sage)}
 .creditin{width:100%;margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--ink-2);
   border:1px solid var(--rule-soft);border-radius:3px;padding:6px 9px;background:var(--paper)}
 .creditin:focus{outline:1px solid var(--sage);outline-offset:0}
@@ -579,22 +570,14 @@ body.pageview .mainsec,body.pageview .chapternav{display:none}
 .contents{font-size:14px;line-height:2.1;color:var(--ink-2);margin:0 0 24px;max-width:var(--measure)}
 .contents .cl{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+.contents a.chip{text-decoration:none;cursor:pointer;transition:background .2s,color .2s,transform .2s,box-shadow .2s}
+.contents a.chip::after{content:"\2193";font-family:var(--mono);font-size:.78em;margin-left:7px;opacity:.55}
+.contents a.chip:hover,.contents a.chip:focus-visible{background:var(--sage);color:var(--on-accent);transform:translateY(-1px);box-shadow:0 8px 18px -12px rgba(14,110,107,.6)}
+.contents a.chip:hover::after{opacity:1}
+.jump-target{scroll-margin-top:8px}
 .contents .chip{display:inline-block;background:var(--core);color:var(--ink-2);
   border-radius:20px;padding:4px 13px;margin:0 6px 7px 0;font-size:13.5px;line-height:1.5}
 
-/* image slots */
-.imgslot{margin:30px 0;max-width:var(--measure)}
-.imgslot .empty{border:1px dashed var(--rule);border-radius:4px;padding:22px 24px;background:var(--wash)}
-.imgslot .k{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--ink-3);display:block;margin-bottom:9px}
-.imgslot .t{font-size:15.5px;color:var(--ink-2);font-weight:600;margin:0 0 6px;display:block}
-.imgslot .l{font-size:14px;color:var(--ink-3);margin:0 0 12px;display:block;line-height:1.6}
-.imgslot .s{font-family:var(--mono);font-size:11px;color:var(--sage);letter-spacing:.03em}
-.imgslot .id{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-top:10px;display:block}
-.imgslot figure{margin:0}
-.imgslot img{width:100%;height:auto;display:block;border:1px solid var(--rule-soft);border-radius:4px;background:var(--card)}
-.imgslot figcaption{font-size:14px;color:var(--ink-3);margin-top:12px;line-height:1.6}
-.imgslot figcaption .attrib{display:block;font-family:var(--mono);font-size:10.5px;margin-top:6px;color:var(--ink-3)}
 .licence td:first-child{font-weight:600;white-space:nowrap}
 
 /* contents + abbreviation key */
@@ -640,7 +623,7 @@ th .trial{display:none}
 @media (prefers-reduced-motion:reduce){html,html.smooth{scroll-behavior:auto}*{transition:none !important}
   .drawer{transition:none}}
 @media print{
-  .controls,.chapternav,.top,#quizsection,.imgslot.hidden{display:none}
+  .controls,.chapternav,.top,#quizsection{display:none}
   details.more > summary{display:none}
   .topic{break-inside:avoid;border:none;padding:0 0 24px}
   body{background:#fff;font-size:11pt}
@@ -1054,7 +1037,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
     <button class="tt" type="button" data-page="c18">Flashcards</button>
     <button class="tt" type="button" data-page="c16">Trials</button>
     <button class="tt" type="button" data-page="quizsection">Self-test</button>
-    <button class="tt" type="button" data-page="c17">Images</button>
   </div>
 </nav>
 
@@ -1085,7 +1067,7 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
   </figure>
 
   <div class="meta-row">
-    <span>17 chapters &#183; 76 topics &#183; 73 diagrams &#183; 58 trials &#183; 109 questions</span>
+    <span>16 chapters &#183; 76 topics &#183; 73 diagrams &#183; 58 trials &#183; 109 questions</span>
     <span>Every topic cites its guideline</span>
   </div>
 </header>
@@ -1123,7 +1105,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
   <a href="#c18"><span class="n">14</span>Presentation Flashcards</a>
   <a href="#c15"><span class="n">15</span>Scores &amp; Criteria</a>
   <a href="#c16"><span class="n">16</span>The Trials</a>
-  <a href="#c17"><span class="n">17</span>Where to Get Pictures</a>
   <a href="#quizsection"><span class="n">Q</span>Self-Test</a>
 </nav>
 
@@ -1409,7 +1390,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 <p>A single screening endoscopy in patients with <b>chronic GERD symptoms</b> (weekly symptoms for 5 or more years) <b>plus ≥3 additional risk factors</b>: male sex, age &gt;50, white race, tobacco smoking, central obesity, and family history of Barrett's or esophageal adenocarcinoma in a first-degree relative. Note that male sex is itself one of the counted risk factors, so women reach the threshold less often.</p>
 <p class="detail">A <b>swallowable non-endoscopic capsule sponge device with a biomarker</b> is an acceptable alternative to EGD for screening — this is the newer recommendation people forget.</p>
 
-<div class="imgslot" data-key="barretts" data-title="Barrett's oesophagus, white light" data-look="Salmon-coloured tongues extending above the gastro-oesophageal junction" data-src="Kvasir · Commons · Open-i"></div>
 <div class="h4">Describing the segment: Prague C&amp;M</div>
 <p>The Prague classification (Sharma P, et al. <i>Gastroenterology</i> 2006;131:1392–1399) is how the segment is written down so the next endoscopist can find the same thing. Two measurements, both taken from the <b>gastro-oesophageal junction — the proximal margin of the gastric folds with the stomach minimally insufflated</b>, not from the diaphragmatic pinch:</p>
 <ul>
@@ -1748,7 +1728,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 </svg>
 <figcaption><b>All achalasia shares a non-relaxing lower sphincter.</b> The subtype is decided entirely by what the oesophageal body does, and the subtype is what picks the treatment.</figcaption>
 </figure>
-<div class="imgslot" data-key="achalasia" data-title="Achalasia on barium swallow" data-look="Dilated body tapering to the classic bird-beak at the oesophagogastric junction" data-src="Commons · Radiopaedia"></div>
 <div class="h4">Achalasia subtypes drive therapy</div>
 <div class="tw"><table>
 <thead><tr><th>Type</th><th>Manometry</th><th>Preferred treatment</th></tr></thead>
@@ -2389,7 +2368,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 <ul>
 <li><b>Eradicate <em>H. pylori</em> in every patient with gastric intestinal metaplasia (GIM) or atrophic gastritis</b>, and confirm eradication.</li>
 <li><b>High-quality endoscopy</b> with adequate insufflation, mucosal cleansing, ≥7 minutes of inspection, and <b>virtual chromoendoscopy</b> (NBI/BLI) to find focal lesions.</li>
-<div class="imgslot" data-key="gim" data-title="Gastric intestinal metaplasia on narrow-band imaging" data-look="Light-blue crest and ridge pattern in the antrum" data-src="Open-i · Commons"></div>
 <li><b>Systematic biopsy (updated Sydney protocol):</b> antrum (greater and lesser curve), incisura, and body (greater and lesser curve) — <b>in separately labeled jars</b>, plus targeted biopsies of any lesion. Separate jars are what allows the pathologist to stage extent.</li>
 
 <figure class="fig">
@@ -2840,7 +2818,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 <li>Variceal bleeding: <b>band ligation</b> for esophageal varices; <b>cyanoacrylate injection</b> for gastric varices.</li>
 </ul>
 
-<div class="imgslot" data-key="ulcer" data-title="Peptic ulcer with a non-bleeding visible vessel" data-look="A Forrest IIa lesion — compare against the schematic above" data-src="Open-i · Commons"></div>
 <div class="h4">After hemostasis</div>
 <ul>
 <li><b>High-dose PPI for 3 days</b> after successful therapy of a high-risk stigma — continuous infusion (80 mg bolus then 8 mg/h) or intermittent high-dose IV/oral. Then twice-daily oral PPI for 2 weeks, then daily.</li>
@@ -2921,7 +2898,7 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 <article id="t14" class="topic">
 <h3>Lower GI bleeding — CTA before colonoscopy in the unstable patient</h3>
 <span class="src">ACG Clinical Guideline, Sengupta et al., Am J Gastroenterol 2023;118:208–231</span>
-<p class="contents"><span class="cl">Inside</span><span class="chip">Oakland score ≤8</span><span class="chip">Restrictive transfusion at Hb &amp;lt;7</span><span class="chip">Diverticular bleeding</span><span class="chip">Angioectasia</span><span class="chip">Post-polypectomy bleeding</span></p>
+<p class="contents"><span class="cl">Inside</span><span class="chip">Oakland score ≤8</span><span class="chip">Restrictive transfusion at Hb &lt;7</span><span class="chip">Diverticular bleeding</span><span class="chip">Angioectasia</span><span class="chip">Post-polypectomy bleeding</span></p>
 <p class="orient">Bleeding from below the ligament of Treitz, usually appearing as fresh blood per rectum in an older patient. Most stops by itself — the skill is identifying who cannot wait.</p>
 <div class="mustknow">
 <span class="lbl">Must know</span>
@@ -4612,7 +4589,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 <ul>
 <li><b>Montreal classification:</b> age at diagnosis (A), location (L1 ileal, L2 colonic, L3 ileocolonic, L4 upper GI), behavior (B1 inflammatory, B2 stricturing, B3 penetrating, +p perianal). Say the phenotype out loud when presenting — it's how GI physicians think.</li>
 <li><b>Inflammatory vs fibrotic stricture</b> is the key management question. MR enterography or CT enterography distinguishes them; inflammation responds to drugs, fibrosis needs dilation or resection.</li>
-<div class="imgslot" data-key="crohns" data-title="Crohn's disease — cobblestoning and deep linear ulceration" data-look="Contrast with the continuous, superficial inflammation of colitis" data-src="Open-i · Commons"></div>
 <li><b>Perianal fistulizing disease:</b> <b>MRI pelvis + examination under anesthesia</b> to map the tracts and drain abscess with setons <b>before</b> immunosuppressing. Then anti-TNF (infliximab has the strongest data), often with an antibiotic (ciprofloxacin/metronidazole). Drugs on top of an undrained abscess is a real and avoidable harm.</li>
 <li><b>Smoking cessation</b> is disease-modifying in Crohn's — arguably the highest-yield intervention available and free. (Note the paradox: smoking is protective in UC.)</li>
 <li><b>Post-operative recurrence:</b> colonoscopy at <b>6–12 months after ileocolonic resection</b>, graded by the <b>Rutgeerts score</b><span class="trial" data-ta="rutgeerts"><span class="tl">Trial</span>Rutgeerts P, et al. <i>Gastroenterology</i> 1990;99:956–963</span>. i2b or higher predicts clinical recurrence and prompts escalation. High-risk patients (smokers, penetrating disease, prior resection, young age at surgery) get prophylactic therapy started within weeks of surgery.</li>
@@ -5322,7 +5298,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 <summary>Full detail</summary>
 <div class="detailbody">
 <ul>
-<div class="imgslot" data-key="polyps" data-title="Colonic polyps — pedunculated, sessile, flat" data-look="Real examples to set against the Paris schematic" data-src="Kvasir (polyps class)"></div>
 <li><b>Cold snare polypectomy is preferred for lesions &lt;10 mm.</b> Cold forceps only for lesions ≤2 mm — anything larger is incompletely removed by forceps.</li>
 <li><b>Do not use hot forceps.</b> High complication rate, poor histology, incomplete removal.</li>
 <li><b>Lesions ≥20 mm:</b> EMR at a center with expertise; avoid piecemeal removal where en bloc is achievable; tattoo the site (3 cm distal, in three quadrants, and never <em>on</em> the lesion).</li>
@@ -6296,7 +6271,7 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 <article id="t44" class="topic liver">
 <h3>Abnormal liver chemistries — read the pattern first</h3>
 <span class="src">ACG Clinical Guideline, Kwo et al., Am J Gastroenterol 2017;112:18–35</span>
-<p class="contents"><span class="cl">Inside</span><span class="chip">Hepatocellular pattern</span><span class="chip">Cholestatic pattern</span><span class="chip">AST:ALT ratio &amp;gt;2:1 with AST &amp;lt;400</span><span class="chip">ALT/AST &amp;gt;1000</span><span class="chip">Isolated hyperbilirubinemia</span></p>
+<p class="contents"><span class="cl">Inside</span><span class="chip">Hepatocellular pattern</span><span class="chip">Cholestatic pattern</span><span class="chip">AST:ALT ratio &gt;2:1 with AST &lt;400</span><span class="chip">ALT/AST &gt;1000</span><span class="chip">Isolated hyperbilirubinemia</span></p>
 <p class="orient">The commonest reason a patient is referred to hepatology. Recognising the pattern of the abnormality narrows the differential far faster than ordering every test at once.</p>
 <div class="mustknow">
 <span class="lbl">Must know</span>
@@ -8627,7 +8602,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 <div class="detailbody">
 <ul>
 <li><b>Before each case, know the indication.</b> "Why are we scoping this patient?" is the most common question asked of an observer, and the answer should be one sentence.</li>
-<div class="imgslot" data-key="landmarks" data-title="Endoscopic landmarks — Z-line, pylorus, caecum" data-look="The three you will be asked to identify out loud" data-src="Kvasir (anatomical landmark classes)"></div>
 <li><b>Learn the anatomy call-outs</b> so you can follow: for colonoscopy — appendiceal orifice, ileocecal valve, triangular transverse folds, the blue liver shadow at the hepatic flexure, the spleen at the splenic flexure, retroflexion in the rectum. For EGD — the Z-line, the diaphragmatic pinch, the incisura, retroflexion to see the cardia and fundus, the pylorus, the bulb, the second portion and the ampulla.</li>
 <li><b>Learn the Paris classification</b> so you can describe a lesion the way the endoscopist does, and know that <b>photodocumentation of cecal landmarks</b> is a quality requirement, not a formality.</li>
 <li><b>Know what the tools do:</b> cold snare, hot snare, injection needle, hemostatic clip, over-the-scope clip, APC probe, band ligator, balloon dilator, Savary dilators, biopsy forceps, and the roles of NBI/BLI virtual chromoendoscopy.</li>
@@ -9799,74 +9773,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
 </article>
 </section>
 
-<section class="chapter pagesec" id="c17">
-<p class="backlink"><button class="back" type="button">&#8592; Back to the chapters</button></p>
-<h2><span class="num">17</span>Where to Get the Pictures</h2>
-<p class="chapter-sub">Sources whose licence actually permits reuse — and how to credit them</p>
-
-
-
-
-<article id="t68" class="topic scope">
-<h3>Verified free-licence sources for GI images</h3>
-<span class="src">Licence terms as published by each repository — confirm on the individual file page before you rely on it</span>
-
-<p class="contents"><span class="cl">Inside</span><span class="chip">Repositories worth your time</span><span class="chip">Licence types in plain terms</span><span class="chip">Adding an image to this file</span></p>
-<p class="orient">Where to find pictures you are actually allowed to use, and how to credit them.</p>
-<div class="mustknow">
-<span class="lbl">Must know</span>
-<ul>
-<li><b>&ldquo;Personal use&rdquo; is not a copyright exemption.</b> What makes an image safe to reuse is its <b>licence</b>, not your intention — so work from repositories that state one.</li>
-<li><b>Kvasir and NIDDK are the two highest-yield sources for this module</b> — one for endoscopic photographs, one for illustrations.</li>
-<li><b>Almost every free licence still requires attribution.</b> Paste the credit line into the slot when you add the image.</li>
-<li><b>Your own unit's de-identified images are the best source of all</b> — no licence question, and they show the equipment you will actually be standing next to.</li>
-</ul>
-</div>
-
-<details class="more">
-<summary>Full detail</summary>
-<div class="detailbody">
-
-<div class="h4">Repositories worth your time</div>
-<div class="tw"><table class="licence">
-<thead><tr><th>Source</th><th>What's there</th><th>Licence</th></tr></thead>
-<tbody>
-<tr><td>Kvasir / Kvasir-Capsule</td><td>Thousands of annotated GI endoscopy images sorted into classes — Z-line, pylorus, caecum, oesophagitis, ulcerative colitis, polyps, dyed and lifted polyps, resection margins</td><td><b>CC BY 4.0</b> — reuse with attribution. The single best match for what this module needs.</td></tr>
-<tr><td>NIDDK Media Library (NIH)</td><td>Digestive and liver illustrations and diagrams</td><td><b>Free of copyright</b>, credit required: &ldquo;National Institute of Diabetes and Digestive and Kidney Diseases, National Institutes of Health.&rdquo;</td></tr>
-<tr><td>Wikimedia Commons</td><td>Endoscopic photographs, barium studies, histology, anatomical diagrams</td><td>Free content only by policy, but the <b>specific</b> licence varies file by file — public domain, CC0, CC BY, CC BY-SA. Open the file page and read it.</td></tr>
-<tr><td>Open-i (US National Library of Medicine)</td><td>Figures pulled from open-access biomedical literature; filterable by licence</td><td>Varies by article — the interface tells you. Prefer CC BY.</td></tr>
-<tr><td>PubMed Central open-access subset</td><td>Figures from CC BY papers, including endoscopy and guideline reviews</td><td>CC BY figures are reusable with citation. Check the article's own licence statement, not just that it is free to read.</td></tr>
-<tr><td>Wellcome Collection</td><td>Historical and contemporary medical imagery</td><td>Much of it CC BY or public domain; stated per item.</td></tr>
-<tr><td>Radiopaedia</td><td>Case-based radiology — barium swallows, CT for diverticulitis and pancreatitis</td><td>Usually <b>CC BY-NC-SA</b>. Non-commercial, so fine for private study, not for a published talk.</td></tr>
-</tbody></table></div>
-
-<div class="pitfall"><span class="lbl">Worth knowing</span>Two things that look free and are not: <b>figures in subscription journal articles</b> (free to read at your institution is not free to reuse), and <b>anything reached through Google Images or ResearchGate</b>, which are indexes rather than licensors. If you cannot find a licence statement, treat the image as all rights reserved.</div>
-
-<div class="h4">If you are putting a talk together</div>
-<ul>
-<li><b>CC BY</b> — use anywhere, credit the author. The most permissive practical licence.</li>
-<li><b>CC BY-SA</b> — same, but a derivative work must carry the same licence.</li>
-<li><b>CC BY-NC</b> — no commercial use. Teaching at your programme is normally fine; a sponsored talk is not.</li>
-<li><b>Public domain / CC0</b> — no restrictions, though crediting is still good manners.</li>
-<li>A workable credit line: <i>Author, title, source, licence</i> — for example, &ldquo;Kvasir dataset, Simula, CC BY 4.0&rdquo;.</li>
-</ul>
-
-<div class="h4">Adding an image to this file</div>
-<ol>
-<li>Press <b>Add images</b> in the toolbar. The empty slots appear — until you do, they are completely hidden, so an unfilled slot never shows as a gap.</li>
-<li><b>Drag an image file onto a slot</b>, or press Choose image. It is resized automatically and appears straight away.</li>
-<li>Type the credit line in the field beneath it.</li>
-<li>Press <b>Save copy with images</b>. You get a new self-contained file with every image permanently embedded, which works offline and needs no folder of pictures beside it.</li>
-</ol>
-<p>If you would rather edit the file directly, the same slots are listed in a block marked <b>YOUR IMAGES</b> near the bottom of the source — set <span class="src" style="display:inline;text-transform:none;letter-spacing:0">src</span> to a URL or to a filename sitting in the same folder.</p>
-<p>Seven slots sit in the chapters where a photograph shows something a schematic cannot — Barrett's mucosa, intestinal metaplasia on narrow-band imaging, cobblestoning, a non-bleeding visible vessel, achalasia on barium, polyp morphology, and the endoscopic landmarks. <b>They stay hidden until you want them.</b> Press <b>Add images</b> in the top bar to reveal them, drop a picture onto one, then press <b>Save copy with images</b> for a permanent file. The other five findings that were originally slots — LA grades, the Mayo subscore, EREFS, bowel-preparation scoring and varix grading — are now drawn diagrams, because those are classification systems rather than things you need a photograph of.</p>
-
-<div class="rounds"><span class="lbl">The best source of all</span>Ask whether your unit keeps a teaching image library, and whether you may use de-identified images from cases you have been involved in. No licence question arises, and images from a scope you stood beside stay with you far better than anything downloaded.</div>
-</div>
-</details>
-</article>
-</section>
-
 <section class="chapter pagesec" id="quizsection">
 <p class="backlink"><button class="back" type="button">&#8592; Back to the chapters</button></p>
 <h2><span class="num">Q</span>Self-Test</h2>
@@ -9908,8 +9814,6 @@ tr.sx-flash td, tr.sx-flash th{background:var(--flash)}
   <div class="drawer-tools">
     <span class="cl">Tools</span>
     <button class="btn" id="btn-expand" aria-pressed="false">Expand all</button>
-    <button class="btn" id="btn-addimg" aria-pressed="false">Add images</button>
-    <button class="btn" id="btn-save">Save copy with images</button>
   </div>
 </aside>
 <button class="top" id="top" aria-label="Back to top">↑</button>
@@ -10048,142 +9952,6 @@ document.querySelectorAll('.trial[data-ta]').forEach(sp=>{
   });
 });
 
-/* ══════════════════════════════════════════════════════════════════════════
-   YOUR IMAGES — paste a URL (or a filename sitting next to this file) between
-   the quotes. Leave "" and the slot stays a reminder of what to look for.
-   Fill the second field with the credit line the source asks for.
-   ══════════════════════════════════════════════════════════════════════════ */
-const IMG = {
-  barretts:    { src:"", credit:"" },
-  eoe:         { src:"", credit:"" },
-  achalasia:   { src:"", credit:"" },
-  esophagitis: { src:"", credit:"" },
-  gim:         { src:"", credit:"" },
-  ulcer:       { src:"", credit:"" },
-  varices:     { src:"", credit:"" },
-  polyps:      { src:"", credit:"" },
-  prep:        { src:"", credit:"" },
-  uc:          { src:"", credit:"" },
-  crohns:      { src:"", credit:"" },
-  landmarks:   { src:"", credit:"" }
-};
-
-const PICKED = {};
-
-function shrink(file, cb){
-  const fr = new FileReader();
-  fr.onload = e => {
-    const im = new Image();
-    im.onload = () => {
-      const max = 1400, s = Math.min(1, max/Math.max(im.width, im.height));
-      const cv = document.createElement('canvas');
-      cv.width = Math.round(im.width*s); cv.height = Math.round(im.height*s);
-      cv.getContext('2d').drawImage(im, 0, 0, cv.width, cv.height);
-      try { cb(cv.toDataURL('image/jpeg', 0.82)); } catch(err){ cb(e.target.result); }
-    };
-    im.onerror = () => cb(e.target.result);
-    im.src = e.target.result;
-  };
-  fr.readAsDataURL(file);
-}
-
-function paintSlot(el){
-  const k = el.dataset.key;
-  const cfg = PICKED[k] || IMG[k] || {src:"",credit:""};
-  const esc = s => (s||'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  el.classList.toggle('filled', !!cfg.src);
-  if (cfg.src) {
-    el.classList.remove('hidden');
-    el.innerHTML = '<figure><img src="'+cfg.src+'" alt="'+esc(el.dataset.title)+'" loading="lazy">'
-      + '<figcaption>' + esc(el.dataset.title)
-      + '<span class="attrib"><input class="creditin" placeholder="Credit line — e.g. Kvasir dataset, CC BY 4.0" value="'+esc(cfg.credit)+'"></span>'
-      + '<button class="slotbtn" data-act="clear">Remove</button>'
-      + '</figcaption></figure>';
-    const ci = el.querySelector('.creditin');
-    ci.addEventListener('input', ()=>{ PICKED[k] = {src:cfg.src, credit:ci.value}; });
-    el.querySelector('[data-act=clear]').addEventListener('click', ()=>{ delete PICKED[k]; paintSlot(el); });
-  } else {
-    el.classList.add('hidden');
-    if (!document.body.classList.contains('addimg')) { el.innerHTML = ''; return; }
-    el.innerHTML = '<div class="empty"><span class="k">Drop an image here</span>'
-      + '<span class="t">'+esc(el.dataset.title)+'</span>'
-      + '<span class="l">'+esc(el.dataset.look)+'</span>'
-      + '<span class="s">Try: '+esc(el.dataset.src)+'</span>'
-      + '<label class="slotbtn">Choose image<input type="file" accept="image/*" hidden></label></div>';
-    el.querySelector('input[type=file]').addEventListener('change', ev=>{
-      const f = ev.target.files[0]; if(!f) return;
-      shrink(f, d => { PICKED[k] = {src:d, credit:(IMG[k]||{}).credit||""}; paintSlot(el); });
-    });
-  }
-}
-document.querySelectorAll('.imgslot').forEach(el=>{
-  paintSlot(el);
-  el.addEventListener('dragover', e=>{ e.preventDefault(); el.classList.add('over'); });
-  el.addEventListener('dragleave', ()=>el.classList.remove('over'));
-  el.addEventListener('drop', e=>{
-    e.preventDefault(); el.classList.remove('over');
-    const f = e.dataTransfer.files[0];
-    if(f && f.type.startsWith('image/')) shrink(f, d => {
-      PICKED[el.dataset.key] = {src:d, credit:(IMG[el.dataset.key]||{}).credit||""}; paintSlot(el);
-    });
-  });
-});
-
-
-const ai=document.getElementById('btn-addimg');
-ai.addEventListener('click', ()=>{
-  const on = document.body.classList.toggle('addimg');
-  ai.classList.toggle('on', on);
-  ai.setAttribute('aria-pressed', on?'true':'false');
-  ai.textContent = on ? 'Hide slots' : 'Add images';
-  document.querySelectorAll('.imgslot').forEach(paintSlot);
-  const f = document.querySelector('.imgslot.hidden');
-  if(on && f && typeof f.scrollIntoView === 'function') f.scrollIntoView({block:'center'});
-});
-
-/* ── export a permanent copy with the chosen images baked in ── */
-document.getElementById('btn-save').addEventListener('click', ()=>{
-  const merged = {};
-  document.querySelectorAll('.imgslot').forEach(el=>{
-    const k = el.dataset.key, c = PICKED[k] || IMG[k] || {src:"",credit:""};
-    merged[k] = {src:c.src||"", credit:c.credit||""};
-  });
-  const clone = document.documentElement.cloneNode(true);
-  /* the saved copy must never carry search state: unwrap highlight marks,
-     drop the results panel, and clear any filter/flash classes */
-  clone.querySelectorAll('mark').forEach(m=>{
-    const p = m.parentNode; if(!p) return;
-    while(m.firstChild) p.insertBefore(m.firstChild, m);
-    p.removeChild(m); p.normalize();
-  });
-  clone.querySelectorAll('.sxpanel, [role="listbox"]').forEach(n=>n.remove());
-  clone.querySelectorAll('.no-hit, .sx-flash, .sxup').forEach(n=>{
-    n.classList.remove('no-hit','sx-flash','sxup');
-    if(!n.getAttribute('class')) n.removeAttribute('class');
-  });
-  clone.querySelector('body').classList.remove('addimg');
-  clone.querySelectorAll('.imgslot').forEach(n=>{n.innerHTML=''; n.classList.remove('hidden','over');});
-  clone.querySelector('body').classList.remove('addimg');
-  clone.querySelectorAll('.tasnap, .ta').forEach(n=>n.remove());
-  clone.querySelectorAll('details.more').forEach(n=>n.removeAttribute('open'));
-  ['stem','opts','expl','qcount','score','hits'].forEach(id=>{
-    const n = clone.querySelector('#'+id); if(n){ n.innerHTML=''; n.className = n.className.replace(' show',''); }
-  });
-  const qi = clone.querySelector('#q'); if(qi) qi.removeAttribute('value');
-  const ex = clone.querySelector('#btn-expand'); if(ex) ex.textContent='Expand all';
-  let html = '<!DOCTYPE html>\n' + clone.outerHTML;
-  const body = 'const IMG = ' + JSON.stringify(merged, null, 2) + ';';
-  html = html.replace(/const IMG = \{[\s\S]*?\n\};/, body);
-  const n = Object.values(merged).filter(v=>v.src).length;
-  const blob = new Blob([html], {type:'text/html'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'GI-Handbook-with-images.html';
-  a.click(); URL.revokeObjectURL(a.href);
-  const b = document.getElementById('btn-save');
-  b.textContent = n + ' image' + (n===1?'':'s') + ' saved';
-  setTimeout(()=>b.textContent='Save copy with images', 2600);
-});
 
 const QBANK = [
 {q:"A 48-year-old with classic heartburn and no alarm features has had 8 weeks of once-daily PPI without improvement. He takes it at bedtime. What is the best next step?",o:["Double the PPI dose","Refer for antireflux surgery","Confirm he is dosing 30-60 minutes before a meal, then reassess","Order esophageal manometry"],a:2,e:"PPIs are acid-activated prodrugs and require a stimulated parietal cell. Bedtime dosing on an empty stomach is a very common cause of apparent PPI failure. Optimize dosing before escalating or investigating."},
@@ -10616,7 +10384,7 @@ var KIND = { title:1000, chapter:860, mustknow:720, h4:640, flashtitle:640, calc
              quiz:300, cap:280, body:250, row:250 };
 
 var PAGE_LABEL = { c15:'Calculators', c14:'Presenting a case', c18:'Flashcards',
-                   c16:'The trials', c17:'Image sources', quizsection:'Self-test' };
+                   c16:'The trials', quizsection:'Self-test' };
 
 var PASSAGES = [], VOCAB = null, built = false;
 
@@ -11393,20 +11161,6 @@ if(document.fonts && document.fonts.ready){
   try{ document.fonts.ready.then(function(){ reposition(); }); }catch(e){}
 }
 
-/* "Save copy with images" clones documentElement — make sure it can never
-   capture a mark, the panel, or a filter state.  Capture phase runs first. */
-document.addEventListener('click', function(e){
-  var b = e.target && e.target.closest ? e.target.closest('#btn-save') : null;
-  if(!b) return;
-  var keep = qEl.value;
-  qEl.value = '';
-  clearTimeout(debounce);
-  clearSearch();
-  /* the clone is taken synchronously inside the page's own handler, which
-     runs after this capture-phase one — so by the time the reader's query
-     goes back the saved file is already written clean */
-  if(keep) setTimeout(function(){ qEl.value = keep; runNow(); }, 0);
-}, true);
 window.addEventListener('beforeprint', function(){ closePanel(); });
 
 /* index once the rest of the page script has finished building the
@@ -11483,9 +11237,14 @@ window.addEventListener('beforeprint', ()=>allDetails.forEach(d=>d.open=true));
 
 /* ── page routing ── */
 const PAGES=[["c15","Score calculators"],["c14","Presenting a case"],["c18","Presentation flashcards"],["c16","The trials"],
-             ["quizsection","Self-test (109 questions)"],["c17","Image sources"]];
+             ["quizsection","Self-test (109 questions)"]];
 function syncTabs(id){
   document.querySelectorAll('.tt').forEach(b=>b.classList.toggle('active', b.dataset.page===id));
+}
+/* a target inside a collapsed "Full detail" block must be opened before it can be scrolled to */
+function openDetailsAround(el){
+  let d = el && el.closest ? el.closest('details') : null;
+  while(d){ d.open = true; d = d.parentElement ? d.parentElement.closest('details') : null; }
 }
 /* instant scroll for view switches (the page has scroll-behavior:smooth) */
 function jumpTo(el){
@@ -11552,7 +11311,7 @@ window.addEventListener('hashchange',()=>{
 if(location.hash.length>1){
   /* deep link on first load: jump straight there instead of a 15,000-px smooth scroll */
   const id0=location.hash.slice(1);
-  if(!routeTo(id0)){ const el0=document.getElementById(id0); if(el0) jumpTo(el0); }
+  if(!routeTo(id0)){ const el0=document.getElementById(id0); if(el0){ openDetailsAround(el0); jumpTo(el0); } }
 }
 /* once everything has loaded (web fonts reflow the page), settle on the deep-link target
    again unless the reader has already started scrolling, then enable smooth scrolling */
@@ -11560,7 +11319,7 @@ if(location.hash.length>1){
   const id0=location.hash.slice(1); let touched=false;
   ['wheel','touchstart','keydown','pointerdown'].forEach(ev=>addEventListener(ev,()=>{touched=true;},{passive:true,once:true}));
   const settle=()=>{
-    if(id0 && !touched){ const el=document.getElementById(id0); if(el && !el.closest('.pagesec')) jumpTo(el); }
+    if(id0 && !touched){ const el=document.getElementById(id0); if(el && !el.closest('.pagesec')){ openDetailsAround(el); jumpTo(el); } }
     document.documentElement.classList.add('smooth');
   };
   const ready=(document.fonts && document.fonts.ready) ? document.fonts.ready.catch(()=>{}) : Promise.resolve();
@@ -11857,6 +11616,63 @@ window.QBANK = QBANK; window.TA = TA;
     nafld:'MASLD',gastroparesis:'Gastroparesis',constipation:'Constipation'};
   const name=NAMES[file]||NAMES[file.replace(/\.html$/,'')]||'Scope Digest';
   b.textContent='\u2190 '+name; b.title='Back to '+name; b.href=u.pathname+u.search; b.hidden=false;
+})();
+
+/* ── "Inside" chips jump to their section within the topic ──
+   Every chip phrase occurs verbatim in its topic, so each chip becomes a link
+   to the sub-heading, bullet, paragraph or table row that carries it. */
+(function(){
+  const norm = t => (t || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  const BLOCKS = '.h4, h4, h5, p, li, tr, dt, dd, caption, th, figcaption, .pitfall, .numbers, .rounds, .tgroup, .ccard, figure.fig, .flash, .casebad';
+  const isHead = b => b.classList.contains('h4') || b.classList.contains('tgroup') || /^H[45]$/.test(b.tagName);
+  const STOP = new Set('the a an and or of to in for on at by with is are be as it its this that from vs versus when what which how why not no you your'.split(' '));
+  const words = t => norm(t).split(' ').filter(w => w.length > 2 && !STOP.has(w));
+  document.querySelectorAll('article.topic').forEach(art => {
+    const row = art.querySelector('.contents'); if(!row) return;
+    const chips = [...row.querySelectorAll('.chip')]; if(!chips.length) return;
+    const blocks = [...art.querySelectorAll(BLOCKS)].filter(b => !row.contains(b));
+    let k = 0, made = 0;
+    chips.forEach(chip => {
+      const phrase = norm(chip.textContent); if(!phrase) return;
+      const has = b => norm(b.textContent).includes(phrase);
+      let t = blocks.find(b => isHead(b) && has(b))
+           || blocks.find(b => norm(b.textContent).startsWith(phrase))
+           || blocks.find(has);
+      if(!t){
+        /* the phrase is paraphrased in the text: take the block that carries most of its words */
+        const cw = words(chip.textContent); let best = null, bestScore = 0;
+        if(cw.length){
+          blocks.forEach(b => {
+            const bw = new Set(words(b.textContent.slice(0, 600)));
+            let s = cw.filter(w => bw.has(w)).length / cw.length; if(isHead(b)) s += .1;
+            if(s > bestScore){ bestScore = s; best = b; }
+          });
+        }
+        if(bestScore >= .6) t = best;
+      }
+      if(!t) return;
+      /* descend to the innermost block that still carries the phrase */
+      let inner = [...t.querySelectorAll(BLOCKS)].find(has);
+      while(inner){ t = inner; inner = [...t.querySelectorAll(BLOCKS)].find(has); }
+      if(!t.id) t.id = art.id + '-j' + (++k);
+      t.classList.add('jump-target');
+      const a = document.createElement('a');
+      a.className = chip.className; a.href = '#' + t.id; a.innerHTML = chip.innerHTML; a.setAttribute('data-jump', '');
+      chip.replaceWith(a); made++;
+    });
+    const lab = row.querySelector('.cl');
+    if(made && lab) lab.textContent = 'Inside \u00b7 jump to';
+  });
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a.chip[data-jump]'); if(!a) return;
+    const el = document.getElementById(a.getAttribute('href').slice(1)); if(!el) return;
+    e.preventDefault();
+    openDetailsAround(el);
+    el.scrollIntoView({block: 'start'});
+    el.classList.remove('sx-flash'); void el.offsetWidth; el.classList.add('sx-flash');
+    setTimeout(() => el.classList.remove('sx-flash'), 1900);
+    try{ history.replaceState(null, '', '#' + el.id); }catch(_){}
+  });
 })();
 </script>
 </body>

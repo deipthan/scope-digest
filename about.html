@@ -7,17 +7,60 @@
 <meta name="theme-color" content="#0B1311">
 <meta name="author" content="Deipthan Prabakar, MD">
 <meta property="og:site_name" content="Scope Digest">
-<meta property="og:type" content="website">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="https://deipthan.github.io/scope-digest/assets/portrait.jpg">
 <meta property="og:title" content="About — Scope Digest">
-<meta property="og:description" content="Why Scope Digest exists, how it grew from a residents' WhatsApp group into twenty modules and a GI handbook, how pages are sourced and reviewed, and who maintains it.">
+<meta property="og:description" content="Who built Scope Digest and why: a residents' WhatsApp group that grew into twenty on-call modules and a 76-topic GI handbook. Made by Deipthan Prabakar, MD.">
 <meta name="twitter:card" content="summary">
 <title>About — Scope Digest</title>
-<meta name="description" content="Why Scope Digest exists, how it grew from a residents' WhatsApp group into twenty modules and a GI handbook, how pages are sourced and reviewed, and who maintains it.">
+<meta name="description" content="Who built Scope Digest and why: a residents' WhatsApp group that grew into twenty on-call modules and a 76-topic GI handbook. Made by Deipthan Prabakar, MD.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/theme.js"></script>
+<style>
+/* ——— about page ——— */
+.ab-hero{padding:54px 0 34px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.ab-grid{display:grid;grid-template-columns:1.2fr .85fr;gap:52px;align-items:center}
+@media(max-width:820px){.ab-grid{grid-template-columns:1fr;gap:34px}}
+.ab-hero h1{font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.08;margin:12px 0 18px;letter-spacing:-.02em;font-weight:400}
+.ab-hero h1 em{font-style:italic;color:var(--teal)}
+.ab-lede{font-size:1.08rem;color:var(--muted);max-width:50ch;line-height:1.65}
+.ab-stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:32px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ab-stats b{display:block;font-family:"STIX Two Text",serif;font-size:2rem;font-weight:600;color:var(--ink);letter-spacing:0;line-height:1.1;margin-bottom:4px}
+.ab-stats .n{display:inline-block;min-width:1ch}
+.ab-portrait{margin:0;position:relative;perspective:1200px;justify-self:center;width:min(360px,100%)}
+.ab-glow{position:absolute;inset:-14% -12%;border-radius:50%;pointer-events:none;z-index:0;filter:blur(18px);
+  background:radial-gradient(closest-side,rgba(23,179,172,.34),rgba(23,179,172,.08) 55%,transparent 76%)}
+.ab-frame{position:relative;z-index:1;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#1A1D1F;
+  box-shadow:0 30px 60px -28px rgba(0,0,0,.5);transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s ease-out;will-change:transform}
+.ab-frame img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.ab-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.5))}
+.ab-cap{position:absolute;left:18px;right:18px;bottom:16px;z-index:2;color:#F6F8F6}
+.ab-cap b{display:block;font-family:"STIX Two Text",serif;font-size:1.15rem;font-weight:600}
+.ab-cap span{display:block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,248,246,.78);margin-top:5px;line-height:1.5}
+.ab-tag{position:absolute;top:14px;left:14px;z-index:2;display:flex;align-items:center;gap:7px;
+  font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(23,179,172,.95)}
+.ab-tag i{width:7px;height:7px;border-radius:50%;background:#E0596F;animation:abblink 1.6s steps(1) infinite}
+@keyframes abblink{50%{opacity:.15}}
+.ab-body{padding:8px 0 24px}
+.ab-sec{padding:36px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:190px 1fr;gap:28px}
+.ab-sec:last-child{border-bottom:none}
+@media(max-width:720px){.ab-sec{grid-template-columns:1fr;gap:8px;padding:28px 0}}
+.ab-sec .k{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);padding-top:7px}
+.ab-sec h2{font-size:1.45rem;margin:0 0 12px}
+.ab-sec p{margin:10px 0;max-width:62ch}
+.ab-sec p.mono{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--muted);letter-spacing:.02em}
+.ab-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.ab-link{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid var(--line);border-radius:6px;background:var(--card);
+  color:var(--teal-deep);font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.04em;text-decoration:none;transition:border-color .2s,transform .2s,box-shadow .2s}
+.ab-link:hover,.ab-link:focus-visible{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 12px 24px -16px rgba(14,110,107,.5);text-decoration:none}
+.ab-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ab-reveal{opacity:0;transform:translateY(22px)}
+html.no-motion .ab-reveal{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.ab-tag i{animation:none}.ab-frame{transition:none}}
+</style>
 </head>
 <body>
 <header class="site-head">
@@ -39,24 +82,73 @@
     </nav>
   </div>
 </header>
-<section class="topic-body">
-  <div class="wrap prose">
-    <span class="eyebrow">About</span>
-    <h1>Why Scope Digest exists</h1>
-    <p>Internal medicine residents manage a great deal of gastroenterology — GI bleeds at 3 a.m., the cirrhotic with a tense belly, the pancreatitis that won't feed, the colitis that isn't turning the corner — often before a fellow ever sets eyes on the patient. The reference material for that work tends to sit at two extremes: exhaustive society PDFs that are hard to use on call, and quick cards that skip the reasoning. Neither is quite what you need at the bedside.</p>
-    <p>Scope Digest is a middle path, in two parts. <strong>The Digest</strong> is twenty focused clinical modules, each built the way you actually manage the patient — resuscitate, risk-stratify, treat, and know exactly when to escalate — with the guideline behind every recommendation named by society and year, and the landmark trials that changed practice pulled into a box you can quote on rounds. <strong><a href="handbook.html">The GI Handbook</a></strong> is the comprehensive half: seventy-six core topics across twelve chapters, with diagrams, score calculators, presentation flashcards, and a self-test, for the resident who wants to understand the rotation rather than just survive it.</p>
+<section class="ab-hero">
+  <div class="wrap ab-grid">
+    <div>
+      <span class="eyebrow ab-reveal">About</span>
+      <h1 class="ab-reveal">Made by a resident, <em>for the resident holding the pager.</em></h1>
+      <p class="ab-lede ab-reveal">Scope Digest began as a WhatsApp group I started during residency for co-residents interested in GI. It grew to fifteen residents and two attendings trading clinical questions, updates in the field, interesting cases, images, and research ideas. Eventually we needed an organized place to keep what we were learning. This is that place.</p>
+      <div class="ab-stats ab-reveal">
+        <div><b><span class="n" data-count="20">20</span></b>focused modules</div>
+        <div><b><span class="n" data-count="76">76</span></b>handbook topics</div>
+        <div><b><span class="n" data-count="58">58</span></b>landmark trials</div>
+        <div><b><span class="n" data-count="109">109</span></b>self-test questions</div>
+      </div>
+    </div>
+    <figure class="ab-portrait ab-reveal">
+      <div class="ab-glow" aria-hidden="true"></div>
+      <div class="ab-frame">
+        <span class="ab-tag" aria-hidden="true"><i></i>Founder &amp; editor</span>
+        <img src="assets/portrait.jpg" width="800" height="999" alt="Deipthan Prabakar, MD" decoding="async">
+        <div class="ab-cap"><b>Deipthan Prabakar, MD</b><span>Internal medicine resident, PGY-3<br>Texas Tech University Health Sciences Center El Paso</span></div>
+      </div>
+    </figure>
+  </div>
+</section>
 
-    <h2>How pages are built</h2>
-    <p>Every page is grounded in current major society guidelines — ACG, AASLD, AGA, ASGE, IDSA/SHEA, USPSTF and the Multi-Society Task Force, Baveno, and the Tokyo Guidelines among them — cross-referenced against the primary trials. Recommendations are stated with their source and year so you can trace them, and each page carries a review date. Where the field is moving quickly (IBD biologics, microbiota therapies, HRS-AKI), that's flagged rather than smoothed over.</p>
-    <p>The two-color system is a small nod to endoscopy: <strong>teal</strong>, the narrow-band-imaging tone, marks evidence and structure; <strong>rose</strong>, the color of mucosa under white light, is reserved for the moments that mean <em>call GI now</em>. Nothing on the site is decorative for its own sake.</p>
+<section class="ab-body">
+  <div class="wrap">
 
-    <h2>Founder &amp; editor</h2>
-    <p><strong>Deipthan Prabakar, MD</strong> is an internal medicine resident at Texas Tech University Health Sciences Center El Paso with a research focus in gastroenterology and endoscopy. His scholarly work includes meta-analyses in endoscopy safety and quality — including a 15-trial meta-analysis of high-flow nasal cannula during upper GI endoscopy recognized with an ACG Presidential Poster Award (2025) — along with work in IBD therapeutics and ctDNA-guided treatment in colorectal cancer.</p>
-    <p>Scope Digest began as a WhatsApp group he started during residency for co-residents interested in GI. It grew to fifteen residents and two attendings sharing clinical questions, updates in the field, interesting cases, images, and research opportunities. Eventually the group needed an organized place to keep what it was learning, and that became this site: the Digest for the call, and the Handbook for the rotation. Every page is written and reviewed by him; feedback from faculty and colleagues shapes revisions.</p>
+    <div class="ab-sec ab-reveal">
+      <span class="k">Why it exists</span>
+      <div>
+        <h2>The reference that fits the 3 a.m. consult</h2>
+        <p>Internal medicine residents manage a great deal of gastroenterology — GI bleeds at 3 a.m., the cirrhotic with a tense belly, the pancreatitis that won't feed, the colitis that isn't turning the corner — often before a fellow ever sets eyes on the patient. The reference material for that work tends to sit at two extremes: exhaustive society PDFs that are hard to use on call, and quick cards that skip the reasoning. Neither is quite what you need at the bedside.</p>
+        <p>Scope Digest is a middle path, in two parts. <strong>The Digest</strong> is twenty focused clinical modules, each built the way you actually manage the patient — resuscitate, risk-stratify, treat, and know exactly when to escalate — with the guideline behind every recommendation named by society and year, and the landmark trials that changed practice pulled into a box you can quote on rounds. <strong><a href="handbook.html">The GI Handbook</a></strong> is the comprehensive half: seventy-six core topics across twelve chapters, with diagrams, score calculators, presentation flashcards, and a self-test, for the resident who wants to understand the rotation rather than just survive it.</p>
+      </div>
+    </div>
 
-    <h2>The important caveat</h2>
-    <p>This is an educational resource, not medical advice. It does not replace clinical judgment, your institution's protocols, pharmacist verification of doses, or the primary guidelines themselves. Medicine changes; a page reviewed today can be out of date tomorrow. Verify before you act, and when in doubt, ask your seniors and consultants.</p>
-    <p>Corrections and suggestions are welcome — accuracy matters more than being finished.</p>
+    <div class="ab-sec ab-reveal">
+      <span class="k">How pages are built</span>
+      <div>
+        <h2>Every recommendation names its source</h2>
+        <p>Every page is grounded in current major society guidelines — ACG, AASLD, AGA, ASGE, IDSA/SHEA, USPSTF and the Multi-Society Task Force, Baveno, and the Tokyo Guidelines among them — cross-referenced against the primary trials. Recommendations are stated with their source and year so you can trace them, and each page carries a review date. Where the field is moving quickly (IBD biologics, microbiota therapies, HRS-AKI), that's flagged rather than smoothed over.</p>
+        <p>The two-color system is a small nod to endoscopy: <strong>teal</strong>, the narrow-band-imaging tone, marks evidence and structure; <strong>rose</strong>, the color of mucosa under white light, is reserved for the moments that mean <em>call GI now</em>. Nothing on the site is decorative for its own sake.</p>
+      </div>
+    </div>
+
+    <div class="ab-sec ab-reveal">
+      <span class="k">About me</span>
+      <div>
+        <h2>Deipthan Prabakar, MD</h2>
+        <p>I'm a PGY-3 internal medicine resident at Texas Tech University Health Sciences Center El Paso with a research focus in gastroenterology and endoscopy. My work includes meta-analyses in endoscopy safety and quality — among them a 15-trial meta-analysis of high-flow nasal cannula during upper GI endoscopy, recognized with an ACG Presidential Poster Award in 2025 — along with work in IBD therapeutics and ctDNA-guided treatment in colorectal cancer.</p>
+        <p>Every page here is written and reviewed by me; feedback from faculty and colleagues shapes the revisions. Seeing co-residents reach for it on call is the reason it keeps growing.</p>
+        <div class="ab-links">
+          <a class="ab-link" href="mailto:deprabak@ttep.edu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>deprabak@ttep.edu</a>
+          <a class="ab-link" href="index.html#topics"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M12 6l6 6-6 6"/></svg>Browse the modules</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ab-sec ab-reveal">
+      <span class="k">The important caveat</span>
+      <div>
+        <h2>Educational, not medical advice</h2>
+        <p>This is an educational resource, not medical advice. It does not replace clinical judgment, your institution's protocols, pharmacist verification of doses, or the primary guidelines themselves. Medicine changes; a page reviewed today can be out of date tomorrow. Verify before you act, and when in doubt, ask your seniors and consultants.</p>
+        <p>Corrections and suggestions are welcome — accuracy matters more than being finished.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -70,5 +162,42 @@
     <p class="mono" style="font-size:.72rem">Written and maintained by <a href="about.html">Deipthan Prabakar, MD</a> · <a href="about.html">about this project</a> · last site review July 2026</p>
   </div>
 </footer>
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce) document.documentElement.classList.add("no-motion");
+  var items = document.querySelectorAll(".ab-reveal");
+  if(!window.gsap || reduce){
+    items.forEach(function(n){ n.style.opacity = 1; n.style.transform = "none"; });
+  } else {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(".ab-hero .ab-reveal", {opacity:1, y:0, duration:.9, stagger:.09, ease:"power3.out", delay:.1});
+    gsap.utils.toArray(".ab-body .ab-reveal").forEach(function(el){
+      gsap.to(el, {opacity:1, y:0, duration:.8, ease:"power3.out", scrollTrigger:{trigger:el, start:"top 88%"}});
+    });
+    gsap.utils.toArray(".ab-stats .n[data-count]").forEach(function(el){
+      var target = +el.dataset.count; el.textContent = "0";
+      ScrollTrigger.create({trigger:el, start:"top 95%", once:true, onEnter:function(){
+        var o = {v:0};
+        gsap.to(o, {v:target, duration:1.3, ease:"power2.out", onUpdate:function(){ el.textContent = Math.round(o.v); }});
+      }});
+    });
+  }
+  /* the portrait tilts toward the pointer, like the scope following the hand */
+  var fig = document.querySelector(".ab-portrait"), fr = document.querySelector(".ab-frame");
+  if(fig && fr && !reduce && window.matchMedia("(hover:hover) and (pointer:fine)").matches){
+    fig.addEventListener("pointermove", function(e){
+      var r = fig.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      fr.style.setProperty("--ry", (x * 10).toFixed(2) + "deg");
+      fr.style.setProperty("--rx", (-y * 8).toFixed(2) + "deg");
+    }, {passive:true});
+    fig.addEventListener("pointerleave", function(){ fr.style.setProperty("--ry", "0deg"); fr.style.setProperty("--rx", "0deg"); });
+  }
+})();
+</script>
 </body>
 </html>
