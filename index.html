@@ -18,30 +18,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* green — the signature scheme: the scope's dark green, teal for evidence, everywhere */
 :root{
+  color-scheme:dark;
   --void:#0B1311;
   --void-2:#0F1B18;
-  --paper:#F6F8F6;
-  --paper-2:#EDF2EF;
-  --ink:#1B2422;
-  --ink-soft:#44524E;
+  --paper:#0E1715;
+  --paper-2:#132019;
+  --ink:#E6EDEA;
+  --ink-soft:#9DB0A9;
   --nbi:#17B3AC;
-  --nbi-deep:#0E6E6B;
+  --nbi-deep:#4FC7C0;
   --mucosa:#E0596F;
-  --mucosa-deep:#A93B4A;
+  --mucosa-deep:#E4697C;
   --gold:#C9A227;
   --hud:rgba(23,179,172,.85);
   --hud-dim:rgba(198,222,218,.42);
-  --card:#FFFFFF;
-  --line:rgba(27,36,34,.13);
-  --line-2:rgba(27,36,34,.2);
-  --line-3:rgba(27,36,34,.12);
-  --hint:rgba(27,36,34,.4);
-  --wl-a:#FDF7F5;
-  --wl-b:#F6EAE6;
+  --card:#152220;
+  --line:rgba(226,238,235,.12);
+  --line-2:rgba(226,238,235,.22);
+  --line-3:rgba(226,238,235,.1);
+  --hint:rgba(226,238,235,.45);
+  --wl-a:#2A1B1F;
+  --wl-b:#1F1518;
   --on-void:#F6F8F6;
-  --void-card:#0B1311;
-  --on-accent:#FFFFFF;
+  --void-card:#0A1210;
+  --on-accent:#0B1311;
   --on-void-card:#F6F8F6;
   --on-void-card-soft:rgba(226,238,235,.6);
   --on-void-soft:rgba(226,238,235,.66);
@@ -66,23 +68,35 @@
   --sans:"IBM Plex Sans",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
-/* white — the whole journey in daylight */
+/* white — the whole journey in daylight, with black type */
 html[data-theme="white"]{
+  color-scheme:light;
   --void:#F3F5F4;
   --void-2:#E8ECEA;
   --paper:#FFFFFF;
   --paper-2:#F4F5F4;
+  --ink:#000000;
+  --ink-soft:#2A302E;
+  --nbi-deep:#0E6E6B;
   --mucosa:#B8465A;
-  --hud:rgba(14,110,107,.9);
-  --hud-dim:rgba(27,36,34,.5);
-  --line:rgba(27,36,34,.12);
-  --line-2:rgba(27,36,34,.2);
-  --line-3:rgba(27,36,34,.1);
-  --on-void:#1B2422;
-  --on-void-soft:rgba(27,36,34,.66);
-  --on-void-nav:rgba(27,36,34,.72);
-  --on-void-line:rgba(27,36,34,.12);
+  --mucosa-deep:#A93B4A;
+  --hud:rgba(10,74,72,.95);
+  --hud-dim:rgba(0,0,0,.72);
+  --card:#FFFFFF;
+  --line:rgba(0,0,0,.14);
+  --line-2:rgba(0,0,0,.22);
+  --line-3:rgba(0,0,0,.1);
+  --hint:rgba(0,0,0,.5);
+  --wl-a:#FDF7F5;
+  --wl-b:#F6EAE6;
+  --on-void:#000000;
   --void-card:#1B2422;
+  --on-accent:#FFFFFF;
+  --on-void-card:#F6F8F6;
+  --on-void-card-soft:rgba(226,238,235,.7);
+  --on-void-soft:rgba(0,0,0,.8);
+  --on-void-nav:rgba(0,0,0,.8);
+  --on-void-line:rgba(0,0,0,.12);
   --vignette:rgba(27,36,34,.16);
   --boot-bg:#F3F5F4;
   --tunnel-bg:#F3F5F4;
@@ -140,7 +154,7 @@ html[data-theme="black"]{
 html{scroll-behavior:smooth}
 html.has-gsap{scroll-behavior:auto}
 body{font-family:var(--sans);background:var(--void);color:var(--ink);line-height:1.6;overflow-x:hidden}
-::selection{background:var(--nbi-deep);color:#fff}
+::selection{background:var(--nbi-deep);color:var(--on-accent)}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--nbi);outline-offset:3px;border-radius:2px}
 .skip{position:fixed;left:-999px;top:12px;z-index:99;background:var(--paper);color:var(--ink);padding:8px 14px;border-radius:4px;font-size:14px}
@@ -377,7 +391,7 @@ html.no-motion .spot{cursor:auto}
 /* tools */
 .tools{padding:20px 0 110px}
 .tools .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:44px}
-.tool{background:var(--void-card);color:var(--on-void-card);border-radius:6px;padding:24px 22px;position:relative;overflow:hidden;
+.tool{background:var(--void-card);color:var(--on-void-card);border:1px solid var(--on-void-line);border-radius:6px;padding:24px 22px;position:relative;overflow:hidden;
   text-decoration:none;display:block;transition:transform .35s cubic-bezier(.2,.8,.25,1)}
 .tool::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 80% -10%,rgba(23,179,172,.28),transparent 60%);
   opacity:0;transition:opacity .4s}

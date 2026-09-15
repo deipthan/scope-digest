@@ -1,30 +1,43 @@
 /* ————— Scope Digest · design system ————— */
+/* green — the signature scheme: dark green paper, teal for evidence */
 :root{
-  --paper:#F6F8F6;
+  color-scheme:dark;
+  --paper:#0E1715;
+  --card:#152220;
+  --ink:#E6EDEA;
+  --muted:#9DB0A9;
+  --teal:#2FBFB8;        /* NBI mode — evidence, structure, links */
+  --teal-deep:#7AD6D0;
+  --teal-tint:#14302D;
+  --rose:#E4697C;        /* white-light mucosa — urgency only */
+  --rose-tint:#3A1B21;
+  --line:#243330;
+  --gold:#D6B65E;
+  --gold-tint:#2B2616;
+  --gold-line:#3E3720;
+  --nbi-deep:#7AD6D0;
+  --on-accent:#0B1311;
+  --radius:6px;
+  --maxw:980px;
+}
+/* white — pure white paper, black type */
+html[data-theme="white"]{
+  color-scheme:light;
+  --paper:#FFFFFF;
   --card:#FFFFFF;
-  --ink:#1B2422;
-  --muted:#59665F;
-  --teal:#0E6E6B;        /* NBI mode — evidence, structure, links */
+  --ink:#000000;
+  --muted:#2E3533;
+  --teal:#0E6E6B;
   --teal-deep:#0A4A48;
   --teal-tint:#E3EFED;
-  --rose:#A93B4A;        /* white-light mucosa — urgency only */
+  --rose:#A93B4A;
   --rose-tint:#F8ECEC;
-  --line:#D7DFDA;
-  --gold:#8A6D2F;
+  --line:#DCE1DF;
+  --gold:#7A5F25;
   --gold-tint:#F4EEDD;
   --gold-line:#E4D9B8;
   --nbi-deep:#0E6E6B;
   --on-accent:#FFFFFF;
-  --radius:6px;
-  --maxw:980px;
-}
-/* white — pure white paper */
-html[data-theme="white"]{
-  --paper:#FFFFFF;
-  --card:#FFFFFF;
-  --teal-tint:#EAF3F2;
-  --line:#E3E7E5;
-  --gold-tint:#F6F1E3;
 }
 /* black — completely dark */
 html[data-theme="black"]{

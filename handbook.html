@@ -48,54 +48,69 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
+/* green — the signature scheme: dark green paper, teal for structure; figures stay as light plates */
 :root{
-  --paper:#F6F8F6;
-  --card:#FFFFFF;
-  --core:#E9F1EF;
-  --ink:#1B2422;
-  --ink-2:#59665F;
-  --ink-3:#8A958F;
-  --rule:#D7DFDA;
-  --rule-soft:#E6ECE9;
-  --sage:#0E6E6B;
-  --sage-deep:#0A4A48;
-  --sage-wash:#E3EFED;
-  --gold:#8A6D2F;
-  --clay:#A93B4A;
+  color-scheme:dark;
+  --paper:#0E1715;
+  --card:#152220;
+  --core:#14302D;
+  --ink:#E6EDEA;
+  --ink-2:#9DB0A9;
+  --ink-3:#7F8C87;
+  --rule:#26332F;
+  --rule-soft:#1E2926;
+  --sage:#2FBFB8;
+  --sage-deep:#7AD6D0;
+  --sage-wash:#14302D;
+  --gold:#D6B65E;
+  --clay:#E4697C;
   --serif:"STIX Two Text",Georgia,serif;
   --sans:"IBM Plex Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --measure:68ch;
-  --wash:#F9FBFA;
-  --wash-2:#F1F5F3;
-  --wash-rose:#F8ECEC;
-  --wash-gold:#F4EEDD;
-  --flash:#D7EBE7;
-  --controls:rgba(246,248,246,.93);
+  --wash:#131C19;
+  --wash-2:#121917;
+  --wash-rose:#3A1B21;
+  --wash-gold:#2B2616;
+  --flash:#1E4A46;
+  --controls:rgba(14,23,21,.92);
   --bar:#0B1311;
   --bar-hover:#0E6E6B;
   --on-bar:#F6F8F6;
   --bar-text:rgba(238,246,244,.6);
   --bar-text-strong:rgba(238,246,244,.85);
   --bar-line:rgba(238,246,244,.16);
-  --on-accent:#FFFFFF;
+  --on-accent:#0B1311;
 }
-/* white — pure white paper */
+/* white — pure white paper, black type */
 html[data-theme="white"]{
+  color-scheme:light;
   --paper:#FFFFFF;
   --card:#FFFFFF;
-  --core:#EAF3F2;
-  --rule:#E3E7E5;
-  --rule-soft:#EEF1F0;
+  --core:#E9F1EF;
+  --ink:#000000;
+  --ink-2:#1F2523;
+  --ink-3:#3F4643;
+  --rule:#DCE1DF;
+  --rule-soft:#EAEEEC;
+  --sage:#0E6E6B;
+  --sage-deep:#0A4A48;
+  --sage-wash:#E3EFED;
+  --gold:#7A5F25;
+  --clay:#A93B4A;
   --wash:#FBFCFB;
   --wash-2:#F4F6F5;
+  --wash-rose:#F8ECEC;
+  --wash-gold:#F4EEDD;
+  --flash:#D7EBE7;
   --controls:rgba(255,255,255,.93);
   --bar:#FFFFFF;
   --bar-hover:#E3EFED;
   --on-bar:#0E6E6B;
-  --bar-text:rgba(27,36,34,.6);
-  --bar-text-strong:rgba(27,36,34,.85);
-  --bar-line:rgba(27,36,34,.14);
+  --bar-text:rgba(0,0,0,.65);
+  --bar-text-strong:rgba(0,0,0,.9);
+  --bar-line:rgba(0,0,0,.14);
+  --on-accent:#FFFFFF;
 }
 /* black — completely dark; figures stay as light plates */
 html[data-theme="black"]{
@@ -125,12 +140,13 @@ html[data-theme="black"]{
   --bar-line:rgba(255,255,255,.14);
   --on-accent:#0B1311;
 }
-html[data-theme="black"] .fig svg,html[data-theme="black"] .imgslot figure{
+/* figures and photos are always light plates, whatever the theme */
+.fig svg,.imgslot figure{
   --paper:#F6F8F6;--card:#FFFFFF;--core:#E9F1EF;--ink:#1B2422;--ink-2:#59665F;--ink-3:#8A958F;
   --rule:#D7DFDA;--rule-soft:#E6ECE9;--sage:#0E6E6B;--sage-deep:#0A4A48;--sage-wash:#E3EFED;
   --gold:#8A6D2F;--clay:#A93B4A;--wash:#F9FBFA}
 @media print{
-  html[data-theme="black"]{color-scheme:light;
+  html,html[data-theme]{color-scheme:light;
     --paper:#fff;--card:#fff;--core:#E9F1EF;--ink:#1B2422;--ink-2:#59665F;--ink-3:#8A958F;
     --rule:#D7DFDA;--rule-soft:#E6ECE9;--sage:#0E6E6B;--sage-deep:#0A4A48;--sage-wash:#E3EFED;
     --gold:#8A6D2F;--clay:#A93B4A;--wash:#F9FBFA;--wash-2:#F1F5F3;--wash-rose:#F8ECEC;--wash-gold:#F4EEDD;--flash:#D7EBE7}
