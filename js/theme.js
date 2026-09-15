@@ -1,37 +1,37 @@
-/* Scope Digest — light / dark theme. The viewer chooses; the choice is remembered.
-   Loaded in <head> so the page paints in the right theme from the first frame. */
+/* Scope Digest — colour theme: green (the signature), white, or black.
+   The viewer chooses from the header; the choice is remembered. Loaded in <head>
+   so the page paints in the right theme from the first frame. */
 (function(){
-  var root=document.documentElement, KEY='sd-theme', timer=null;
-  function stored(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
-  function system(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
-  function apply(t){ root.setAttribute('data-theme', t); }
-  function label(b){
-    var d = root.getAttribute('data-theme')==='dark';
-    b.setAttribute('aria-label', d ? 'Switch to light theme' : 'Switch to dark theme');
-    b.setAttribute('title', d ? 'Light theme' : 'Dark theme');
-    b.setAttribute('aria-pressed', d ? 'true' : 'false');
+  var root=document.documentElement, KEY='sd-theme', THEMES=['green','white','black'], timer=null;
+  function stored(){
+    try{ var v=localStorage.getItem(KEY); if(v==='light') v='green'; if(v==='dark') v='black';
+         return THEMES.indexOf(v)>=0 ? v : null; }catch(e){ return null; }
   }
-  function labels(){ var bs=document.querySelectorAll('[data-theme-toggle]'); for(var i=0;i<bs.length;i++) label(bs[i]); }
-  var t=stored(); if(t!=='dark' && t!=='light') t=system();
-  apply(t);
+  function apply(t){ root.setAttribute('data-theme', t); }
+  function mark(){
+    var t=root.getAttribute('data-theme'), bs=document.querySelectorAll('[data-theme-set]');
+    for(var i=0;i<bs.length;i++) bs[i].setAttribute('aria-pressed', bs[i].getAttribute('data-theme-set')===t ? 'true' : 'false');
+  }
+  apply(stored()||'green');
   window.sdTheme={
-    get:function(){ return root.getAttribute('data-theme')||'light'; },
+    themes:THEMES,
+    get:function(){ return root.getAttribute('data-theme')||'green'; },
     set:function(t){
+      if(THEMES.indexOf(t)<0 || t===this.get()) return;
       root.classList.add('theming'); clearTimeout(timer);
       timer=setTimeout(function(){ root.classList.remove('theming'); }, 560);
       apply(t); try{ localStorage.setItem(KEY,t); }catch(e){}
-      labels();
+      mark();
+      try{ window.dispatchEvent(new CustomEvent('sd-theme',{detail:{theme:t}})); }catch(e){}
     },
-    toggle:function(){ this.set(this.get()==='dark' ? 'light' : 'dark'); }
+    next:function(){ var i=THEMES.indexOf(this.get()); this.set(THEMES[(i+1)%THEMES.length]); }
   };
   function wire(){
-    var bs=document.querySelectorAll('[data-theme-toggle]');
-    for(var i=0;i<bs.length;i++){ label(bs[i]); bs[i].addEventListener('click', function(){ window.sdTheme.toggle(); }); }
+    mark();
+    document.addEventListener('click', function(e){
+      var b=e.target && e.target.closest ? e.target.closest('[data-theme-set]') : null;
+      if(b) window.sdTheme.set(b.getAttribute('data-theme-set'));
+    });
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', wire); else wire();
-  if(window.matchMedia){
-    var mq=matchMedia('(prefers-color-scheme: dark)');
-    var onchange=function(){ if(!stored()){ apply(system()); labels(); } };
-    if(mq.addEventListener) mq.addEventListener('change', onchange); else if(mq.addListener) mq.addListener(onchange);
-  }
 })();
