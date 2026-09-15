@@ -112,7 +112,10 @@ html[data-theme="dark"] .fig svg,html[data-theme="dark"] .imgslot figure{
     --gold:#8A6D2F;--clay:#A93B4A;--wash:#F9FBFA;--wash-2:#F1F5F3;--wash-rose:#F8ECEC;--wash-gold:#F4EEDD;--flash:#D7EBE7}
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:96px}
+html{scroll-behavior:auto;scroll-padding-top:96px}
+/* smooth scrolling is switched on by script once the page has loaded and fonts are ready,
+   so a deep link on first load jumps straight to its target instead of animating across 30,000 px */
+html.smooth{scroll-behavior:smooth}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--sans);font-size:16.5px;line-height:1.7;
@@ -587,7 +590,7 @@ th .trial{display:none}
   .quizwrap{padding:26px 22px}
   footer{padding:38px 20px 70px}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}
+@media (prefers-reduced-motion:reduce){html,html.smooth{scroll-behavior:auto}*{transition:none !important}
   .drawer{transition:none}}
 @media print{
   .controls,.chapternav,.top,#quizsection,.imgslot.hidden{display:none}
@@ -11502,6 +11505,19 @@ if(location.hash.length>1){
   const id0=location.hash.slice(1);
   if(!routeTo(id0)){ const el0=document.getElementById(id0); if(el0) jumpTo(el0); }
 }
+/* once everything has loaded (web fonts reflow the page), settle on the deep-link target
+   again unless the reader has already started scrolling, then enable smooth scrolling */
+(function(){
+  const id0=location.hash.slice(1); let touched=false;
+  ['wheel','touchstart','keydown','pointerdown'].forEach(ev=>addEventListener(ev,()=>{touched=true;},{passive:true,once:true}));
+  const settle=()=>{
+    if(id0 && !touched){ const el=document.getElementById(id0); if(el && !el.closest('.pagesec')) jumpTo(el); }
+    document.documentElement.classList.add('smooth');
+  };
+  const ready=(document.fonts && document.fonts.ready) ? document.fonts.ready.catch(()=>{}) : Promise.resolve();
+  const go=()=>ready.then(settle);
+  if(document.readyState==='complete') go(); else addEventListener('load',go);
+})();
 
 /* ── contents drawer ── */
 (function(){
